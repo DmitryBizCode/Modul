@@ -24,21 +24,30 @@ namespace ModulWork
             dataGridView1.Rows.Clear();
             Random rand = new Random();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            for(int i = 1; i <= Convert.ToInt32(textBox1.Text);  i++)
+            try
             {
-                shape.AddShape(new Rhombus(rand.Next(1, 16)));
-                dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
-                shape.ClearShapes();
-                shape.AddShape(new IsoscelesTriangle(rand.Next(1, 16), rand.Next(1, 16)));
-                dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
-                shape.ClearShapes();
-                shape.AddShape(new Trapezoid(rand.Next(1, 16), rand.Next(1, 16), rand.Next(1, 16)));
-                dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
-                shape.ClearShapes();
-                shape.AddShape(new PentagonalPyramid(rand.Next(1, 16), rand.Next(1, 16)));
-                dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
-                shape.ClearShapes();
+                if (Convert.ToInt32(textBox1.Text) < 1)
+                    throw new ArgumentOutOfRangeException("error syntactsis");
+                for (int i = 1; i <= Convert.ToInt32(textBox1.Text); i++)
+                {
+                    shape.AddShape(new Rhombus(rand.Next(1, 16)));
+                    dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
+                    shape.ClearShapes();
+                    shape.AddShape(new IsoscelesTriangle(rand.Next(1, 16), rand.Next(1, 16)));
+                    dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
+                    shape.ClearShapes();
+                    shape.AddShape(new Trapezoid(rand.Next(1, 16), rand.Next(1, 16), rand.Next(1, 16)));
+                    dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
+                    shape.ClearShapes();
+                    shape.AddShape(new PentagonalPyramid(rand.Next(1, 16), rand.Next(1, 16)));
+                    dataGridView1.Rows.Add(shape.GetShapeNames(), shape.GetShapeData(), shape.GetShapeCalculations());
+                    shape.ClearShapes();
 
+                }
+            }
+            catch  
+            {
+                throw new ArgumentOutOfRangeException("error syntactsis");
             }
         }
     }
